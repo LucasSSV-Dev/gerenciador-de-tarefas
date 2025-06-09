@@ -22,7 +22,7 @@ public class Task {
     @Column(unique = true, nullable = false)
     private UUID id;
 
-    @Column(length = 255, nullable = false)
+    @Column(nullable = false)
     private String title;
 
     @Column(nullable = false)
