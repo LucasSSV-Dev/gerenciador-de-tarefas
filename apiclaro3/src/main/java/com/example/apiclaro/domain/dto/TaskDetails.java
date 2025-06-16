@@ -4,8 +4,9 @@ public record TaskDetails(String title, String description, boolean completed) {
 
 
     public TaskDetails(String title, String description) {
-        this(title, description, false, LocalDateTime.now(), LocalDateTime.now());
+        this(title, description, false);
     }
+
 
     @Override
     public String toString() {
@@ -20,4 +21,5 @@ public record TaskDetails(String title, String description, boolean completed) {
                 completed +
                 "\n}";
     }
+
 }
