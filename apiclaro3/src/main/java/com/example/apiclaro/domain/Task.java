@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -15,6 +18,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "task")
+@EntityListeners(AuditingEntityListener.class)
 public class Task {
 
     @Id
@@ -31,10 +35,12 @@ public class Task {
     @Column(nullable = false)
     private Boolean completed;
 
+    @CreatedDate
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
-    @Column
+    @LastModifiedDate
+    @Column(nullable = false)
     private LocalDateTime updatedAt;
 
 
