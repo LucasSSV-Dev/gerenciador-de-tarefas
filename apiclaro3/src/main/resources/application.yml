@@ -1,6 +1,6 @@
 spring:
   application:
-    name: apiclaro3
+    name: apiclaro
 
   datasource:
     url: jdbc:postgresql://localhost:5433/task
