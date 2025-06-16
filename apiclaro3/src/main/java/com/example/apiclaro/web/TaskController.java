@@ -1,10 +1,14 @@
 package com.example.apiclaro.web;
 
-import com.example.apiclaro.domain.TaskDetails;
-import com.example.apiclaro.domain.TaskOutput;
+import com.example.apiclaro.domain.Task;
+import com.example.apiclaro.domain.dto.TaskDetails;
+import com.example.apiclaro.domain.dto.TaskOutput;
 import com.example.apiclaro.infrastructure.TaskService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,8 +28,15 @@ public class TaskController {
 
     //Post Mappings
     @PostMapping
-    public void createTask(@RequestBody TaskDetails task){
-        service.createTask(task);
+    public ResponseEntity<Object> createTask(@RequestBody TaskDetails task){
+        Task taskSaved = service.createTask(task);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(taskSaved.getId())
+                .toUri();
+
+        return ResponseEntity.created(location).build(); //Inserir o location
     }
 
 
