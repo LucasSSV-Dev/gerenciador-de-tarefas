@@ -32,7 +32,7 @@ Projeto criado com foco em boas práticas, arquitetura em camadas e aprendizado 
 ## 🧠 Arquitetura do projeto
 
 Organizado em camadas conforme boas práticas:
-
+```
 src/
 └── main/
 ├── java/
@@ -43,7 +43,7 @@ src/
 │ └── web/ # Camada de controle (REST Controller)
 └── resources/
 └── application.yml # Configurações do Spring Boot
-
+```
 ---
 
 ## 💻 Como executar localmente
@@ -73,10 +73,6 @@ Certifique-se de que o PostgreSQL está rodando localmente com o banco criado.
 
 ### ✨ O que fazer a seguir:
 
-
-- Usar **DTOs** (para entrada e saída de dados). (Praticamente pronto.)
-- Criar uma **versão com Swagger** para documentar os endpoints.
-- Adicionar **validações** com `@Valid`.
-- Escrever **testes unitários e de integração** com JUnit e Mockito.
-
-
+- Criar uma **versão com Swagger** para documentar os endpoints. (Em aprendizado)
+- Adicionar **validações** com `@Valid`. (Em aprendizado)
+- Escrever **testes unitários e de integração** com JUnit e Mockito. (Em aprendizado)
