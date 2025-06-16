@@ -20,19 +20,22 @@ public class TaskService {
     }
 
     //Post Methods
-    public void createTask(TaskDetails taskDetails) {
+    public Task createTask(TaskDetails taskDetails) {
+        //TODO: Validar aqui :D
         Task task = new Task(taskDetails);
-        repository.save(task);
+        return repository.save(task);
     }
 
     //Get Methods
     public List<TaskOutput> getTasks() {
         List<Task> taskList = repository.findAll();
-        List<TaskOutput> output = new ArrayList<>();
+
+        List<TaskOutput> outputList = new ArrayList<>();
         for (Task task : taskList){
-            output.add(task.toOutput());
+            outputList.add(task.toOutput());
         }
-        return output;
+
+        return outputList;
     }
 
     public TaskOutput getTaskById(UUID id) {
@@ -63,7 +66,7 @@ public class TaskService {
             taskFound.setCompleted(!taskFound.getCompleted());
             repository.save(taskFound);
         }
-        return null; //TODO: Gerenciar Exceptions, transformar em ResponseEntity
+        return null; //TODO: Gerenciar Exceptions
     }
 
     //Put Methods
@@ -71,15 +74,12 @@ public class TaskService {
         Optional<Task> taskOptional = repository.findById(id);
         if (taskOptional.isPresent()){
             Task taskFound = taskOptional.get();
-            taskFound.atualizarPeloDTO(task);
+            taskFound.updateTask(task);
             repository.save(taskFound);
             return taskFound.toOutput();
         }
-        return null; //TODO: Transformar tudo em ResponseEntity
+        return null;
     }
-
-
-    //Reusabilidade:
 
 
 }

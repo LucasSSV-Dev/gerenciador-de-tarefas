@@ -62,7 +62,7 @@ public class Task {
                 this.getUpdatedAt());
     }
 
-    public void atualizarPeloDTO(TaskDetails taskDetails){
+    public void updateTask(TaskDetails taskDetails){
         this.setTitle(taskDetails.title());
         this.setDescription(taskDetails.description());
         this.setCompleted(taskDetails.completed());
