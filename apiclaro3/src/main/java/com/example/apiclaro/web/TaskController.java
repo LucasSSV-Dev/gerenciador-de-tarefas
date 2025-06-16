@@ -22,60 +22,77 @@ public class TaskController {
         this.service = service;
     }
 
-
-
     //Requisições HTTP:
 
     //Post Mappings
     @PostMapping
-    public ResponseEntity<Object> createTask(@RequestBody TaskDetails task){
+    public ResponseEntity<Void> createTask(@RequestBody TaskDetails task){
+        //Não tem como dar erro. Vou validar apenas se tem conteúdo.
         Task taskSaved = service.createTask(task);
+        if (taskSaved != null){
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(taskSaved.getId())
-                .toUri();
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                    .path("/{id}")
+                    .buildAndExpand(taskSaved.getId())
+                    .toUri();
 
-        return ResponseEntity.created(location).build(); //Inserir o location
+            return ResponseEntity.created(location).build();
+        }
+        return ResponseEntity.badRequest().build();
     }
 
 
     //Get Mappings
     @GetMapping
-    public List<TaskOutput> getTasks(){
-        return service.getTasks();
+    public ResponseEntity<List<TaskOutput>> getTasks(){
+        return ResponseEntity.ok(service.getTasks());
     }
 
     @GetMapping("{id}")
-    public TaskOutput getTaskById(@PathVariable("id") UUID id){
-        return service.getTaskById(id);
+    public ResponseEntity<TaskOutput> getTaskById(@PathVariable("id") UUID id){
+        TaskOutput taskOutput = service.getTaskById(id);
+        if (taskOutput == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(service.getTaskById(id));
     }
 
 
     //Delete Mappings
     @DeleteMapping
-    public void deleteAll(){
+    public ResponseEntity<Void> deleteAll(){
         service.deleteAll();
+        return ResponseEntity.noContent().build();
     }
 
+
     @DeleteMapping("{id}")
-    public void deleteById(@PathVariable("id") UUID id){
+    public ResponseEntity<Void> deleteById(@PathVariable("id") UUID id){
         service.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
 
     //Patch Mappings
     @PatchMapping("{id}") //ESSE AQUI É PRA ALTERAR A CONCLUSÃO SEM ABRIR A TASK. TRANSFERIR ELA PRA AREA DE CONCLUÍDO.
-    public TaskOutput editTaskStatus(@PathVariable UUID id){
-        return service.editTaskStatus(id);
+    public ResponseEntity<TaskOutput> editTaskStatus(@PathVariable UUID id){
+        TaskOutput taskOutput = service.editTaskStatus(id);
+        if (taskOutput == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().build();
     }
 
 
     //Put Mappings
     @PutMapping("{id}") //TODA VEZ QUE ALGUEM ABRIR E ALTERAR QUALQUER CONTEÚDO VAI SER LANÇADO ESSE AQUI.
-    public TaskOutput editTask(@PathVariable("id") UUID id,
+    public ResponseEntity<TaskOutput> editTask(@PathVariable("id") UUID id,
                                @RequestBody TaskDetails task){
-        return service.editTask(id, task);
+        TaskOutput taskOutput = service.editTask(id, task);
+        if (taskOutput == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(taskOutput);
     }
 
 

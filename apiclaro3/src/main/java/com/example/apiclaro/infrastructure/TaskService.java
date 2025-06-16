@@ -1,7 +1,7 @@
 package com.example.apiclaro.infrastructure;
 
 import com.example.apiclaro.domain.Task;
- import com.example.apiclaro.domain.dto.TaskDetails;
+import com.example.apiclaro.domain.dto.TaskDetails;
 import com.example.apiclaro.domain.dto.TaskOutput;
 import com.example.apiclaro.repository.TaskRepository;
 import com.example.apiclaro.validator.TaskValidator;
@@ -25,9 +25,12 @@ public class TaskService {
 
     //Post Methods
     public Task createTask(TaskDetails taskDetails) {
-        Task task = new Task(taskDetails);
-        //TODO: Validar aqui :D
-        return repository.save(task);
+        boolean valid = validator.validateSave(taskDetails);
+        if (valid){
+            Task task = new Task(taskDetails);
+            return repository.save(task);
+        }
+        return null;
     }
 
     //Get Methods
@@ -44,12 +47,10 @@ public class TaskService {
 
     public TaskOutput getTaskById(UUID id) {
         Optional<Task> taskOptional = repository.findById(id);
-
-        if (taskOptional.isEmpty()){ //TODO: tratar esses erros apropriadamente
-            throw new RuntimeException("Task not found.");
+        if (taskOptional.isPresent()){
+            return taskOptional.get().toOutput();
         }
-
-        return taskOptional.get().toOutput();
+        return null;
     }
 
 
