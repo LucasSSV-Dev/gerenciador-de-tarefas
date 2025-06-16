@@ -1,0 +1,17 @@
+DRY - dont repete yourself:
+- Criar métodos que façam o DTO se tornar uma entidade no banco de dados
+- Fazer o inverso também!
+
+YAGNI - You aren't gonna need it:
+- Tirar o desnecessário pra evitar erros
+
+
+RESTful:
+- Criar saídas controladas através do ResponseEntity **
+- Tratar os possíveis erros e exceções
+- Criar validadores
+- Usar o CreatedDate e o LastModifiedDate
+
+
+Git - Versionamento de código:
+- Fazer os commits a medida que finalizar cada tarefa e não tudo no final.
