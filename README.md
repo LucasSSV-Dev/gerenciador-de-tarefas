@@ -62,19 +62,27 @@ src/
 1. **Clone o repositório:**
 
 ```bash
-git clone https://github.com/seuusuario/apiclaro3.git
+https://github.com/LucasSSV-Dev/gerenciador-de-tarefas.git
 ```
 Configure o application.yml
 ```
 spring:
+  application:
+    name: apiclaro
+
   datasource:
-    url: jdbc:postgresql://localhost:5432/nome_do_banco
-    username: seu_usuario
-    password: sua_senha
+    url: jdbc:postgresql://localhost:5433/task
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 ```
 
 Execute o projeto com sua IDE (ex: IntelliJ IDEA)
