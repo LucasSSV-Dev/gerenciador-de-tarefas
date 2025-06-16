@@ -36,13 +36,13 @@ public class TaskService {
     }
 
     public TaskOutput getTaskById(UUID id) {
-        Task taskFound = repository.findById(id).orElse(null);
-        if (taskFound == null){
+        Optional<Task> taskOptional = repository.findById(id);
+
+        if (taskOptional.isEmpty()){ //TODO: tratar esses erros apropriadamente
             throw new RuntimeException("Task not found.");
-        } else {
-            TaskOutput output = new TaskOutput(taskFound.getId(), taskFound.getTitle(), taskFound.getDescription(), taskFound.getCompleted(), taskFound.getCreatedAt(), taskFound.getUpdatedAt());
-            return output;
         }
+
+        return taskOptional.get().toOutput();
     }
 
 
