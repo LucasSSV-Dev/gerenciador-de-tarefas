@@ -1,5 +1,7 @@
 package com.example.apiclaro.domain;
 
+import com.example.apiclaro.domain.dto.TaskDetails;
+import com.example.apiclaro.domain.dto.TaskOutput;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,6 +44,30 @@ public class Task {
     @LastModifiedDate
     @Column(nullable = false)
     private LocalDateTime updatedAt;
+
+
+    public Task(TaskDetails taskDetails) {
+        this.title = taskDetails.title();
+        this.description = taskDetails.description();
+        this.completed = taskDetails.completed();
+    }
+
+    // Métodos
+    public TaskOutput toOutput(){
+        return new TaskOutput(this.getId(),
+                this.getTitle(),
+                this.getDescription(),
+                this.getCompleted(),
+                this.getCreatedAt(),
+                this.getUpdatedAt());
+    }
+
+    public void atualizarPeloDTO(TaskDetails taskDetails){
+        this.setTitle(taskDetails.title());
+        this.setDescription(taskDetails.description());
+        this.setCompleted(taskDetails.completed());
+    }
+
 
 
 
