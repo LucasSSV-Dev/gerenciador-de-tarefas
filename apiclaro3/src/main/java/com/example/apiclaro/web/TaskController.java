@@ -65,7 +65,7 @@ public class TaskController {
 
 
     //Patch Mappings
-    @PatchMapping("{id}/status") //ESSE AQUI É PRA ALTERAR A CONCLUSÃO SEM ABRIR A TASK. TRANSFERIR ELA PRA AREA DE CONCLUÍDO.
+    @PatchMapping("{id}") //ESSE AQUI É PRA ALTERAR A CONCLUSÃO SEM ABRIR A TASK. TRANSFERIR ELA PRA AREA DE CONCLUÍDO.
     public TaskOutput editTaskStatus(@PathVariable UUID id){
         return service.editTaskStatus(id);
     }
