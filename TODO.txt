@@ -1,17 +1,17 @@
 DRY - dont repete yourself:
-- Criar métodos que façam o DTO se tornar uma entidade no banco de dados
-- Fazer o inverso também!
+- Criar métodos que façam o DTO se tornar uma entidade no banco de dados (Feito!)
+- Fazer o inverso também! (Feito!)
 
 YAGNI - You aren't gonna need it:
-- Tirar o desnecessário pra evitar erros
+- Tirar o desnecessário pra evitar erros (Em progresso!)
 
 
 RESTful:
-- Criar saídas controladas através do ResponseEntity **
-- Tratar os possíveis erros e exceções
+- Criar saídas controladas através do ResponseEntity (Em progresso!)
+- Tratar os possíveis erros e exceções (Em progresso!)
 - Criar validadores
-- Usar o CreatedDate e o LastModifiedDate
+- Usar o CreatedDate e o LastModifiedDate (Feito!)
 
 
 Git - Versionamento de código:
-- Fazer os commits a medida que finalizar cada tarefa e não tudo no final.
+- Fazer os commits a medida que finalizar cada tarefa e não tudo no final. (Em progresso!)
