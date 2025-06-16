@@ -4,6 +4,7 @@ import com.example.apiclaro.domain.Task;
  import com.example.apiclaro.domain.dto.TaskDetails;
 import com.example.apiclaro.domain.dto.TaskOutput;
 import com.example.apiclaro.repository.TaskRepository;
+import com.example.apiclaro.validator.TaskValidator;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,15 +15,18 @@ import java.util.UUID;
 @Service
 public class TaskService {
     private final TaskRepository repository;
+    private final TaskValidator validator;
 
-    public TaskService(TaskRepository repository) {
+    public TaskService(TaskRepository repository, TaskValidator validator) {
         this.repository = repository;
+        this.validator = validator;
     }
+
 
     //Post Methods
     public Task createTask(TaskDetails taskDetails) {
-        //TODO: Validar aqui :D
         Task task = new Task(taskDetails);
+        //TODO: Validar aqui :D
         return repository.save(task);
     }
 
