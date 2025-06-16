@@ -1,17 +1,16 @@
-package com.example.apiclaro.domain;
+package com.example.apiclaro.domain.dto;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
-public record TaskDetails(String title, String description, boolean completed, LocalDateTime createdAt, LocalDateTime updatedAt) {
-
-
-    public TaskDetails(String title, String description) {
-        this(title, description, false, LocalDateTime.now(), LocalDateTime.now());
-    }
+public record TaskOutput(UUID id, String title, String description, boolean completed, LocalDateTime createdAt, LocalDateTime updatedAt) {
 
     @Override
     public String toString() {
-        return "TaskDetails {\n" +
+        return "TaskOutput {\n" +
+                "  id: " +
+                id +
+                ",\n" +
                 "  title: " +
                 "'" + title + "'" +
                 ",\n" +
