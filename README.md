@@ -35,14 +35,25 @@ Organizado em camadas conforme boas práticas:
 ```
 src/
 └── main/
-├── java/
-│ └── com.example.apiclaro/
-│ ├── domain/ # Modelos da aplicação
-│ ├── infrastructure/ # Lógica de negócio (Service)
-│ ├── repository/ # Interface com banco de dados (JPA)
-│ └── web/ # Camada de controle (REST Controller)
-└── resources/
-└── application.yml # Configurações do Spring Boot
+    ├── java/
+    │   └── com/example/apiclaro/
+    │       ├── domain/              # Modelos da aplicação (entidades e DTOs)
+    │       │   ├── dto/
+    │       │   │   ├── TaskDetails.java
+    │       │   │   └── TaskOutput.java
+    │       │   └── Task.java
+    │       ├── exceptions/          # Exceções personalizadas
+    │       │   └── TaskNotFoundException.java
+    │       ├── infrastructure/      # Camada de serviço (lógica de negócio)
+    │       │   └── TaskService.java
+    │       ├── repository/          # Interfaces JPA (acesso a dados)
+    │       │   └── TaskRepository.java
+    │       ├── web/                 # Camada de controle (REST Controllers)
+    │       │   └── TaskController.java
+    │       └── Application.java     # Classe principal da aplicação
+    └── resources/
+        └── application.yml          # Arquivo de configuração do Spring Boot
+
 ```
 ---
 
